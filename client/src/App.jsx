@@ -1,8 +1,15 @@
-export default function App() {
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import StudentDashboard from "./pages/student/StudentDashboard";
+
+function App() {
   return (
-    <main style={{ padding: "40px", fontFamily: "Arial, sans-serif" }}>
-      <h1>InternovaX</h1>
-      <p>Smart Internship Management & Monitoring Platform</p>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/student/dashboard" replace />} />
+        <Route path="/student/dashboard" element={<StudentDashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+export default App;
