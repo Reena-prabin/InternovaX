@@ -1,0 +1,682 @@
+import bcrypt from 'bcryptjs';
+
+// Pre-hashed 'password123' for fast startup
+const DEFAULT_HASH = bcrypt.hashSync('password123', 10);
+
+export const initialSeedData = {
+  users: [
+    {
+      _id: 'usr_student_1',
+      name: 'Student',
+      email: 'student@internovax.com',
+      password: DEFAULT_HASH,
+      role: 'student',
+      avatar: 'S',
+      title: 'Full Stack Engineering Intern',
+      phone: '+1 (555) 234-5678',
+      location: 'San Francisco, CA',
+      bio: 'Enthusiastic computer science student passionate about building scalable web platforms and cloud-native software.',
+      createdAt: '2026-01-15T08:00:00.000Z'
+    },
+    {
+      _id: 'usr_company_1',
+      name: 'FinTech Cloud Labs',
+      email: 'company@internovax.com',
+      password: DEFAULT_HASH,
+      role: 'company',
+      avatar: 'F',
+      industry: 'Financial Technology & Cloud Computing',
+      location: 'New York, NY',
+      website: 'https://fintechcloudlabs.example.com',
+      description: 'Pioneering next-generation decentralized and cloud financial transaction architectures.',
+      createdAt: '2026-01-10T08:00:00.000Z'
+    },
+    {
+      _id: 'usr_mentor_1',
+      name: 'Dr. Sarah Jenkins',
+      email: 'mentor@internovax.com',
+      password: DEFAULT_HASH,
+      role: 'mentor',
+      avatar: 'SJ',
+      expertise: 'Cloud Architecture & Distributed Systems',
+      company: 'FinTech Cloud Labs',
+      department: 'Infrastructure & Platforms',
+      experience: '12+ Years in Industry Mentorship',
+      createdAt: '2026-01-12T08:00:00.000Z'
+    },
+    {
+      _id: 'usr_admin_1',
+      name: 'Administrator',
+      email: 'admin@internovax.com',
+      password: DEFAULT_HASH,
+      role: 'admin',
+      avatar: 'A',
+      title: 'Head of Internship Affairs',
+      createdAt: '2026-01-01T08:00:00.000Z'
+    }
+  ],
+
+  students: [
+    {
+      _id: 'std_1',
+      userId: 'usr_student_1',
+      name: 'Student',
+      email: 'student@internovax.com',
+      university: 'State Institute of Technology',
+      degree: 'B.S. in Computer Science',
+      graduationYear: '2026',
+      gpa: '3.85',
+      profileCompletion: 85,
+      skills: ['React', 'JavaScript', 'Node.js', 'MongoDB', 'Express.js', 'HTML', 'CSS', 'REST APIs', 'Git'],
+      sections: {
+        personalInfo: true,
+        education: true,
+        skills: true,
+        resume: false
+      },
+      resumeUrl: '/documents/student_resume_2026.pdf',
+      resumeName: 'student_resume_2026.pdf',
+      activeInternshipId: 'int_1',
+      mentorId: 'usr_mentor_1',
+      createdAt: '2026-01-15T08:00:00.000Z'
+    }
+  ],
+
+  internships: [
+    {
+      _id: 'int_1',
+      title: 'Full Stack Web Developer Intern',
+      company: 'FinTech Cloud Labs',
+      companyId: 'usr_company_1',
+      location: 'Bengaluru / Remote',
+      type: 'Full-time',
+      stipend: '₹35,000 / month',
+      duration: '12 Weeks',
+      startDate: '2026-02-01',
+      endDate: '2026-04-25',
+      deadline: '2026-01-28',
+      description: 'Collaborate with senior distributed systems architects to design, prototype, and implement responsive web modules using MongoDB, Express, React, and Node.js. Build automated test suites and participate in weekly agile retrospectives.',
+      requiredSkills: ['React', 'JavaScript', 'Node.js', 'MongoDB', 'Express.js'],
+      eligibility: 'Undergraduate or Master students in CS, IT, or related technical disciplines with hands-on web project experience.',
+      openings: 3,
+      status: 'Active',
+      featured: true,
+      createdAt: '2026-01-12T09:00:00.000Z'
+    },
+    {
+      _id: 'int_2',
+      title: 'Frontend UI/UX Systems Intern',
+      company: 'Apex AI Systems',
+      companyId: 'usr_company_2',
+      location: 'Hyderabad (Hybrid)',
+      type: 'Full-time',
+      stipend: '₹30,000 / month',
+      duration: '10 Weeks',
+      startDate: '2026-03-01',
+      endDate: '2026-05-10',
+      deadline: '2026-02-20',
+      description: 'Build polished, accessible dark-themed interactive data dashboards and design system components. Work with product managers to test user workflows and optimize client-side rendering performance.',
+      requiredSkills: ['React', 'JavaScript', 'CSS', 'HTML', 'Responsive Design'],
+      eligibility: 'Strong portfolio of frontend projects and component architecture understanding.',
+      openings: 2,
+      status: 'Active',
+      featured: true,
+      createdAt: '2026-01-14T10:00:00.000Z'
+    },
+    {
+      _id: 'int_3',
+      title: 'Backend API & Database Intern',
+      company: 'Quantum Digital Platforms',
+      companyId: 'usr_company_3',
+      location: 'Pune (Remote)',
+      type: 'Full-time',
+      stipend: '₹45,000 / month',
+      duration: '12 Weeks',
+      startDate: '2026-03-15',
+      endDate: '2026-06-05',
+      deadline: '2026-03-01',
+      description: 'Design robust RESTful APIs, develop data aggregation pipelines with MongoDB, and optimize high-throughput database queries for enterprise clients.',
+      requiredSkills: ['Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'REST APIs'],
+      eligibility: 'Demonstrated experience with server-side JavaScript and NoSQL databases.',
+      openings: 4,
+      status: 'Active',
+      featured: false,
+      createdAt: '2026-01-18T11:00:00.000Z'
+    },
+    {
+      _id: 'int_4',
+      title: 'Cybersecurity Analyst Intern',
+      company: 'CyberShield Security Ops',
+      companyId: 'usr_company_4',
+      location: 'Mumbai (Onsite)',
+      type: 'Part-time',
+      stipend: '₹25,000 / month',
+      duration: '8 Weeks',
+      startDate: '2026-04-01',
+      endDate: '2026-05-30',
+      deadline: '2026-03-10',
+      description: 'Participate in vulnerability audits, configure secure authentication mechanisms, and assist in red-team/blue-team simulation drills.',
+      requiredSkills: ['Cybersecurity', 'Linux', 'Network Protocols', 'Security Auditing'],
+      eligibility: 'Familiarity with OWASP guidelines and system defense basics.',
+      openings: 2,
+      status: 'Active',
+      featured: false,
+      createdAt: '2026-01-20T14:00:00.000Z'
+    },
+    {
+      _id: 'int_5',
+      title: 'Cloud DevOps Engineering Intern',
+      company: 'NovaScale Cloud Systems',
+      companyId: 'usr_company_5',
+      location: 'Gurugram / Remote',
+      type: 'Full-time',
+      stipend: '₹40,000 / month',
+      duration: '12 Weeks',
+      startDate: '2026-03-01',
+      endDate: '2026-05-25',
+      deadline: '2026-02-15',
+      description: 'Manage CI/CD build scripts, container deployments, monitoring telemetry, and automated infrastructure health checks.',
+      requiredSkills: ['Docker', 'Linux', 'Node.js', 'CI/CD', 'Git'],
+      eligibility: 'Strong scripting skills and understanding of containerization concepts.',
+      openings: 3,
+      status: 'Active',
+      featured: false,
+      createdAt: '2026-01-22T08:30:00.000Z'
+    },
+    {
+      _id: 'int_6',
+      title: 'Mobile & Responsive Web Intern',
+      company: 'Sphere Interactive Labs',
+      companyId: 'usr_company_6',
+      location: 'Noida (Hybrid)',
+      type: 'Full-time',
+      stipend: '₹28,000 / month',
+      duration: '10 Weeks',
+      startDate: '2026-04-01',
+      endDate: '2026-06-10',
+      deadline: '2026-03-05',
+      description: 'Develop progressive touch interfaces and lightweight web frontends tailored for multi-screen hardware devices.',
+      requiredSkills: ['React', 'JavaScript', 'HTML', 'CSS', 'UI/UX'],
+      eligibility: 'Portfolio demonstrating mobile-first web designs.',
+      openings: 1,
+      status: 'Active',
+      featured: false,
+      createdAt: '2026-01-25T16:00:00.000Z'
+    }
+  ],
+
+  // 12 Applications for the student as explicitly specified in the reference dashboard
+  applications: [
+    {
+      _id: 'app_1',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_1',
+      internshipTitle: 'Full Stack Web Developer Intern',
+      company: 'FinTech Cloud Labs',
+      appliedDate: '2026-01-16',
+      status: 'Selected',
+      matchScore: 95,
+      coverLetter: 'I have deep hands-on expertise building MERN platforms and love engineering reactive web interfaces.',
+      notes: 'Outstanding technical assessment and strong mentor recommendations.'
+    },
+    {
+      _id: 'app_2',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_2',
+      internshipTitle: 'Frontend UI/UX Systems Intern',
+      company: 'Apex AI Systems',
+      appliedDate: '2026-01-18',
+      status: 'Shortlisted',
+      matchScore: 92,
+      coverLetter: 'Experienced in CSS architecture, component libraries and responsive dark dashboards.',
+      notes: 'Scheduled for technical screen on Friday.'
+    },
+    {
+      _id: 'app_3',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_3',
+      internshipTitle: 'Backend API & Database Intern',
+      company: 'Quantum Digital Platforms',
+      appliedDate: '2026-01-20',
+      status: 'Shortlisted',
+      matchScore: 88,
+      coverLetter: 'Experienced with Node.js and MongoDB high-speed indexing.',
+      notes: 'Shortlisted for second-round panel.'
+    },
+    {
+      _id: 'app_4',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_6',
+      internshipTitle: 'Mobile & Responsive Web Intern',
+      company: 'Sphere Interactive Labs',
+      appliedDate: '2026-01-21',
+      status: 'Shortlisted',
+      matchScore: 85,
+      coverLetter: 'Deep love for fluid CSS animations and micro-interactions.',
+      notes: 'Portfolio review completed favorably.'
+    },
+    {
+      _id: 'app_5',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_5',
+      internshipTitle: 'Cloud DevOps Engineering Intern',
+      company: 'NovaScale Cloud Systems',
+      appliedDate: '2026-01-22',
+      status: 'Shortlisted',
+      matchScore: 80,
+      coverLetter: 'Built continuous delivery scripts for multi-tier Node deployments.',
+      notes: 'Invited to technical screening.'
+    },
+    {
+      _id: 'app_6',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_4',
+      internshipTitle: 'Cybersecurity Analyst Intern',
+      company: 'CyberShield Security Ops',
+      appliedDate: '2026-01-23',
+      status: 'Under Review',
+      matchScore: 45,
+      coverLetter: 'Looking to expand web application security and penetration testing skills.',
+      notes: 'Under review by security team lead.'
+    },
+    {
+      _id: 'app_7',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_1',
+      internshipTitle: 'Cloud Solutions Associate',
+      company: 'Skyline Cloud Systems',
+      appliedDate: '2026-01-24',
+      status: 'Under Review',
+      matchScore: 78,
+      coverLetter: 'Passionate about cloud architecture and serverless deployments.',
+      notes: 'Application forwarded to hiring committee.'
+    },
+    {
+      _id: 'app_8',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_2',
+      internshipTitle: 'Junior Software Engineer Intern',
+      company: 'Vanguard Tech',
+      appliedDate: '2026-01-25',
+      status: 'Applied',
+      matchScore: 82,
+      coverLetter: 'Excited about modern web applications and developer tools.',
+      notes: 'Awaiting initial review.'
+    },
+    {
+      _id: 'app_9',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_3',
+      internshipTitle: 'Platform Engineering Intern',
+      company: 'Centric Core',
+      appliedDate: '2026-01-26',
+      status: 'Applied',
+      matchScore: 75,
+      coverLetter: 'Interested in distributed microservices and database clustering.',
+      notes: 'Application received.'
+    },
+    {
+      _id: 'app_10',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_5',
+      internshipTitle: 'Site Reliability Engineering Intern',
+      company: 'AeroCloud Tech',
+      appliedDate: '2026-01-26',
+      status: 'Applied',
+      matchScore: 70,
+      coverLetter: 'Eager to improve platform uptime and incident remediation.',
+      notes: 'Application received.'
+    },
+    {
+      _id: 'app_11',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_6',
+      internshipTitle: 'Frontend Design Intern',
+      company: 'Loom Dynamics',
+      appliedDate: '2026-01-27',
+      status: 'Applied',
+      matchScore: 84,
+      coverLetter: 'Experience in accessible web navigation and dark mode UI.',
+      notes: 'Application received.'
+    },
+    {
+      _id: 'app_12',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      studentEmail: 'student@internovax.com',
+      internshipId: 'int_2',
+      internshipTitle: 'Product Engineering Intern',
+      company: 'Nexis Enterprise',
+      appliedDate: '2026-01-28',
+      status: 'Applied',
+      matchScore: 80,
+      coverLetter: 'Dedicated to customer-focused engineering and clean architecture.',
+      notes: 'Application received.'
+    }
+  ],
+
+  // 5 Weekly Progress reports matching prompt stats (4 submitted, 3 reviews)
+  reports: [
+    {
+      _id: 'rep_1',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      internshipId: 'int_1',
+      week: 1,
+      title: 'Platform Orientation & Architecture Onboarding',
+      tasksCompleted: 'Configured local development workspace, connected to MongoDB test replica, ran seed migration, and walked through architectural specifications with Dr. Jenkins.',
+      challenges: 'Initial environment variable mismatch with local proxy configuration.',
+      learning: 'Gained comprehensive insight into the MERN data pipeline and module separation.',
+      nextWeekPlan: 'Implement core CRUD endpoints for student profiles and application tracking.',
+      documentName: 'week1_architecture_notes.pdf',
+      status: 'Approved',
+      mentorReview: {
+        mentorId: 'usr_mentor_1',
+        mentorName: 'Dr. Sarah Jenkins',
+        reviewedDate: '2026-02-08',
+        score: 95,
+        feedback: 'Excellent onboarding speed and clear documentation of setup steps. Well done!'
+      },
+      submittedDate: '2026-02-07'
+    },
+    {
+      _id: 'rep_2',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      internshipId: 'int_1',
+      week: 2,
+      title: 'REST API & Controller Architecture Development',
+      tasksCompleted: 'Constructed Express routing tables, request validation middleware, and secure password hashing using bcrypt. Created automated error handling middleware.',
+      challenges: 'Handling edge-case duplicate email violations cleanly.',
+      learning: 'Implemented robust error-handling pipelines and secure token validation.',
+      nextWeekPlan: 'Develop student dashboard stats aggregation and progress calculations.',
+      documentName: 'week2_api_specs.pdf',
+      status: 'Approved',
+      mentorReview: {
+        mentorId: 'usr_mentor_1',
+        mentorName: 'Dr. Sarah Jenkins',
+        reviewedDate: '2026-02-15',
+        score: 92,
+        feedback: 'Strong understanding of REST standards. Good security-first mindset.'
+      },
+      submittedDate: '2026-02-14'
+    },
+    {
+      _id: 'rep_3',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      internshipId: 'int_1',
+      week: 3,
+      title: 'Dashboard Component Library & Dark Theme System',
+      tasksCompleted: 'Crafted the pure CSS theme engine using #0D0D0D base and #B7FF3C neon accents. Engineered responsive stat cards, circular progress rings, and notification panels.',
+      challenges: 'Ensuring SVG circular progress offsets calculate smoothly without external libraries.',
+      learning: 'Mastered native CSS variables and performant SVG stroke-dasharray animations.',
+      nextWeekPlan: 'Integrate live weekly report submission and feedback viewing interfaces.',
+      documentName: 'week3_ui_components.pdf',
+      status: 'Approved',
+      mentorReview: {
+        mentorId: 'usr_mentor_1',
+        mentorName: 'Dr. Sarah Jenkins',
+        reviewedDate: '2026-02-22',
+        score: 96,
+        feedback: 'The dark theme matches the brand visual reference impeccably. Very clean UI work!'
+      },
+      submittedDate: '2026-02-21'
+    },
+    {
+      _id: 'rep_4',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      internshipId: 'int_1',
+      week: 4,
+      title: 'Skill-Based Internship Matching Algorithm',
+      tasksCompleted: 'Formulated the native JavaScript matching logic comparing student competency vectors with internship skill prerequisites. Implemented real-time score display and filters.',
+      challenges: 'Balancing exact string matches with fuzzy domain equivalents without external AI dependencies.',
+      learning: 'Effective vector intersection logic and normalized percentage scoring in Node.',
+      nextWeekPlan: 'Construct the comprehensive evaluation workflow and certificate generation engine.',
+      documentName: 'week4_matching_engine.pdf',
+      status: 'Submitted', // Submitted, pending mentor review (matches 4 submitted, 3 reviews)
+      mentorReview: null,
+      submittedDate: '2026-02-28'
+    },
+    {
+      _id: 'rep_5',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      internshipId: 'int_1',
+      week: 5,
+      title: 'Evaluation Protocols & Certificate Verification System',
+      tasksCompleted: '',
+      challenges: '',
+      learning: '',
+      nextWeekPlan: '',
+      documentName: '',
+      status: 'Pending', // 5th report is pending
+      mentorReview: null,
+      submittedDate: null
+    }
+  ],
+
+  // Mentors table
+  mentors: [
+    {
+      _id: 'men_1',
+      userId: 'usr_mentor_1',
+      name: 'Dr. Sarah Jenkins',
+      email: 'mentor@internovax.com',
+      company: 'FinTech Cloud Labs',
+      department: 'Platform Architecture & Cloud Infrastructure',
+      expertise: ['Cloud Architecture', 'MERN Stack', 'Distributed Systems', 'System Design'],
+      activeInternsCount: 3,
+      maxCapacity: 5,
+      assignedInternships: ['int_1'],
+      assignedStudents: ['usr_student_1'],
+      rating: 4.95,
+      bio: 'Senior Technical Lead and Distributed Systems Architect with over a decade of experience guiding university graduates into production engineering.'
+    },
+    {
+      _id: 'men_2',
+      userId: 'usr_mentor_2',
+      name: 'Alex Rivera',
+      email: 'alex.rivera@internovax.com',
+      company: 'Apex AI Systems',
+      department: 'Frontend Engineering',
+      expertise: ['React', 'JavaScript', 'CSS Systems', 'Accessibility'],
+      activeInternsCount: 2,
+      maxCapacity: 4,
+      assignedInternships: ['int_2'],
+      assignedStudents: [],
+      rating: 4.88,
+      bio: 'Principal UI/UX Architect focused on micro-frontends and high-performance design systems.'
+    },
+    {
+      _id: 'men_3',
+      userId: 'usr_mentor_3',
+      name: 'David Chen',
+      email: 'david.chen@internovax.com',
+      company: 'Quantum Digital Platforms',
+      department: 'Backend Platforms',
+      expertise: ['Node.js', 'MongoDB', 'Database Optimization', 'Security'],
+      activeInternsCount: 1,
+      maxCapacity: 4,
+      assignedInternships: ['int_3'],
+      assignedStudents: [],
+      rating: 4.92,
+      bio: 'Staff Backend Engineer specializing in data engineering pipelines and secure multi-tenant architectures.'
+    }
+  ],
+
+  // Allocations table
+  mentorAllocations: [
+    {
+      _id: 'alloc_1',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      mentorId: 'usr_mentor_1',
+      mentorName: 'Dr. Sarah Jenkins',
+      internshipId: 'int_1',
+      internshipTitle: 'Full Stack Web Developer Intern',
+      assignedDate: '2026-02-01',
+      status: 'Active',
+      method: 'Expertise Match'
+    }
+  ],
+
+  // Evaluations
+  evaluations: [
+    {
+      _id: 'eval_1',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      internshipId: 'int_1',
+      internshipTitle: 'Full Stack Web Developer Intern',
+      evaluatorId: 'usr_mentor_1',
+      evaluatorName: 'Dr. Sarah Jenkins',
+      evaluatorRole: 'mentor',
+      scores: {
+        technicalSkills: 94,
+        communication: 90,
+        workQuality: 95,
+        punctuality: 96,
+        overallPerformance: 94
+      },
+      finalScore: 93.8,
+      feedback: 'Outstanding technical acumen and diligence. Delivered all weekly milestones well ahead of time with rigorous testing.',
+      status: 'Completed',
+      evaluatedDate: '2026-02-28',
+      recommendationForCertificate: true
+    }
+  ],
+
+  // Certificates
+  certificates: [
+    {
+      _id: 'cert_1',
+      certificateId: 'INX-2026-8842',
+      studentId: 'usr_student_1',
+      studentName: 'Student',
+      internshipTitle: 'Full Stack Web Developer Intern',
+      company: 'FinTech Cloud Labs',
+      duration: '12 Weeks (February - April 2026)',
+      completionDate: '2026-04-25',
+      finalScore: 93.8,
+      status: 'Issued',
+      issuedBy: 'InternovaX Academic & Industry Board',
+      verificationUrl: '/verify/INX-2026-8842',
+      signatures: [
+        { name: 'Dr. Sarah Jenkins', title: 'Senior Technical Mentor' },
+        { name: 'Head of Industry Relations', title: 'InternovaX Director' }
+      ]
+    }
+  ],
+
+  // Internal Messages
+  messages: [
+    {
+      _id: 'msg_1',
+      senderId: 'usr_mentor_1',
+      senderName: 'Dr. Sarah Jenkins',
+      senderRole: 'mentor',
+      receiverId: 'usr_student_1',
+      content: 'Hi Student! Welcome aboard FinTech Cloud Labs. Your week 1 report has been reviewed and approved. Great start on the architecture diagrams!',
+      timestamp: '2026-02-08T14:30:00.000Z',
+      read: true
+    },
+    {
+      _id: 'msg_2',
+      senderId: 'usr_student_1',
+      senderName: 'Student',
+      senderRole: 'student',
+      receiverId: 'usr_mentor_1',
+      content: 'Thank you, Dr. Jenkins! I am currently working on the week 4 skill recommendation engine and would love your advice on scoring weights.',
+      timestamp: '2026-02-22T09:15:00.000Z',
+      read: true
+    },
+    {
+      _id: 'msg_3',
+      senderId: 'usr_mentor_1',
+      senderName: 'Dr. Sarah Jenkins',
+      senderRole: 'mentor',
+      receiverId: 'usr_student_1',
+      content: 'I recommend allocating 60% weight to primary framework skills (React, Node) and 40% to auxiliary competencies (MongoDB, REST APIs). Let us review it during Friday sync.',
+      timestamp: '2026-02-22T10:00:00.000Z',
+      read: true
+    },
+    {
+      _id: 'msg_4',
+      senderId: 'usr_company_1',
+      senderName: 'FinTech Cloud Labs HR',
+      senderRole: 'company',
+      receiverId: 'usr_student_1',
+      content: 'Reminder: The mid-term performance check-in is scheduled for next Tuesday at 2 PM EST.',
+      timestamp: '2026-02-25T11:20:00.000Z',
+      read: false
+    }
+  ],
+
+  // Notifications
+  notifications: [
+    {
+      _id: 'notif_1',
+      userId: 'usr_student_1',
+      title: 'Mentor Feedback Received',
+      message: 'Dr. Sarah Jenkins approved your Week 3 report with a score of 96/100.',
+      type: 'feedback',
+      read: false,
+      timestamp: '2026-02-22T11:00:00.000Z',
+      link: '/progress'
+    },
+    {
+      _id: 'notif_2',
+      userId: 'usr_student_1',
+      title: 'Application Shortlisted',
+      message: 'Your application for Frontend UI/UX Systems Intern at Apex AI Systems has been shortlisted!',
+      type: 'application',
+      read: false,
+      timestamp: '2026-02-20T16:45:00.000Z',
+      link: '/applications'
+    },
+    {
+      _id: 'notif_3',
+      userId: 'usr_student_1',
+      title: 'Weekly Report Due Soon',
+      message: 'Week 5 progress report deadline is approaching in 3 days.',
+      type: 'reminder',
+      read: true,
+      timestamp: '2026-02-27T08:00:00.000Z',
+      link: '/progress'
+    },
+    {
+      _id: 'notif_4',
+      userId: 'usr_student_1',
+      title: 'Certificate Preview Available',
+      message: 'Your milestone completion certificate INX-2026-8842 has been verified by the board.',
+      type: 'certificate',
+      read: true,
+      timestamp: '2026-02-28T12:00:00.000Z',
+      link: '/certificates'
+    }
+  ]
+};

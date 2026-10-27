@@ -1,0 +1,8 @@
+{
+  "name": "InternovaX - Internship Management & Monitoring Platform",
+  "description": "Centralized MERN-stack platform for managing the complete internship lifecycle connecting students, companies, mentors, and administrators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

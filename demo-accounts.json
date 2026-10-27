@@ -1,0 +1,61 @@
+{
+  "notice": "All demo accounts for the InternovaX platform. Strictly kept in this file; never exposed in the website UI.",
+  "accounts": [
+    {
+      "role": "student",
+      "name": "Student (Alex Morgan)",
+      "email": "student@internovax.com",
+      "password": "password123",
+      "department": "Computer Science",
+      "permissions": ["browse_internships", "apply", "submit_weekly_reports", "view_certificates"]
+    },
+    {
+      "role": "company",
+      "name": "FinTech Cloud Labs",
+      "email": "company@internovax.com",
+      "password": "password123",
+      "company": "FinTech Cloud Labs",
+      "permissions": ["post_internships", "review_applicants", "approve_reports", "submit_evaluations"]
+    },
+    {
+      "role": "mentor",
+      "name": "Dr. Sarah Jenkins",
+      "email": "mentor@internovax.com",
+      "password": "password123",
+      "department": "Infrastructure & Platforms",
+      "permissions": ["supervise_students", "review_reports", "grade_evaluations"]
+    },
+    {
+      "role": "admin",
+      "name": "Head of Internship Affairs",
+      "email": "admin@internovax.com",
+      "password": "password123",
+      "department": "College Administration",
+      "permissions": ["all", "manage_allocations", "issue_certificates", "manage_users"]
+    },
+    {
+      "role": "company",
+      "name": "Nexus AI Labs",
+      "email": "recruiter@nexusai.com",
+      "password": "password123",
+      "company": "Nexus AI Labs",
+      "permissions": ["post_internships", "review_applicants"]
+    },
+    {
+      "role": "mentor",
+      "name": "Dr. Elena Vance",
+      "email": "mentor@techcorp.com",
+      "password": "password123",
+      "department": "Computer Science & AI",
+      "permissions": ["supervise_students", "review_reports"]
+    },
+    {
+      "role": "admin",
+      "name": "Dean Robert Chen",
+      "email": "admin@university.edu",
+      "password": "password123",
+      "department": "Dean of Engineering",
+      "permissions": ["all"]
+    }
+  ]
+}
