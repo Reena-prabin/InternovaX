@@ -93,13 +93,13 @@ export default function HomePage({ onOpenCertificate }) {
   // Google OAuth login
   const handleGoogleLogin = () => {
     setErrorMsg('');
-    window.location.assign('/api/auth/google');
+    window.location.assign(`${import.meta.env.VITE_API_URL}/api/auth/google`);
   };
 
   // GitHub OAuth login
   const handleGitHubLogin = () => {
     setErrorMsg('');
-    window.location.assign('/api/auth/github');
+    window.location.assign(`${import.meta.env.VITE_API_URL}/api/auth/github`);
   };
 
   // Certificate lookup

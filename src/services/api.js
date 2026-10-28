@@ -1,5 +1,4 @@
-
-const BASE_URL = '/api';
+const BASE_URL = `${import.meta.env.VITE_API_URL || 'https://internovax-web2.onrender.com'}/api`;
 
 export function getToken() {
   return localStorage.getItem('inx_token');
