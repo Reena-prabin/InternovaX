@@ -64,9 +64,13 @@ function createStudentProfile(db, user) {
   });
 }
 
+const FRONTEND_URL =
+  process.env.FRONTEND_URL ||
+  'https://internova-x.vercel.app';
+
 function redirectOAuthError(res, message) {
   return res.redirect(
-    '/#oauth_error=' + encodeURIComponent(message)
+    `${FRONTEND_URL}/#oauth_error=${encodeURIComponent(message)}`
   );
 }
 
@@ -201,8 +205,8 @@ export const googleCallback = async (req, res) => {
     const token = generateToken(user);
 
     return res.redirect(
-      '/#oauth_token=' + encodeURIComponent(token)
-    );
+  `${FRONTEND_URL}/#oauth_token=${encodeURIComponent(token)}`
+);
   } catch (err) {
     console.error('Google callback failed:', err.message);
 
